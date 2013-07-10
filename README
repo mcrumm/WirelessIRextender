@@ -1,6 +1,11 @@
 Arduino based 434MHz Wireless IR Extender
 Intended for use with, but not limited to, a NinjaBlock.
 
+Proposed Libraries:
+RF - https://code.google.com/p/rc-switch/ this is used by NinjaBlock so I thought it would make sense to utilize the same one for consistency.
+IR - https://github.com/cyborg5/IRLib
+
+
 As I posted here, http://forums.ninjablocks.com/index.php?p=/discussion/1392/wireless-ir-extender-lets-build-one
 
 Capabilities:
