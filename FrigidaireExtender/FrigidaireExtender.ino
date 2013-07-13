@@ -1,15 +1,15 @@
 /*
 This is the first step in creating a Wireless Universal IR extender.
-Currently it is only the FRIGIDAIRE A/C Unit as its data is entered manually.
-An IR LED must be connected to the output PWM pin 3
-*/
+ Currently it is only the FRIGIDAIRE A/C Unit as its data is entered manually.
+ An IR LED must be connected to the output PWM pin 3
+ */
 #include <IRLib.h>
 #include <RCSwitch.h>
 
 /* 
-Define our emulated IR buttons, give them decimal values that link them to a RF signal
-24 bit string 101111011101001000000000, where last 4 bits increment 
-*/
+ Define our emulated IR buttons, give them decimal values that link them to a RF signal
+ 24 bit string 101111011101001000000000, where last 4 bits increment.
+ */
 #define FRIGIDAIRE_Power 12440064
 #define FRIGIDAIRE_Timer 12440065
 #define FRIGIDAIRE_FanUp 12440066
@@ -22,7 +22,7 @@ Define our emulated IR buttons, give them decimal values that link them to a RF 
 #define FRIGIDAIRE_ES 12440073       //Energy Saver
 #define FRIGIDAIRE_Sleep 12440074
 
-#define ENABLE_Sniffer true  //debug output
+#define ENABLE_Sniffer true  //Debug output optional, possibly add debug levels
 
 RCSwitch myRFSwitch = RCSwitch(); //Create an instance of RCswitch
 IRsend My_Sender;  //Instantiate IRsend class
@@ -31,81 +31,102 @@ int del = 500; //Delay value for end of loop
 void setup() {
   Serial.begin(9600);
   myRFSwitch.enableReceive(0); //RF receiver on interrupt 0 => that is pin #2
-//  Serial.print("Fin Setup");
 }
 
 
 void loop() {
   if (myRFSwitch.available()) {
-  
+
     long RFvalue = myRFSwitch.getReceivedValue();
 
     if (RFvalue == 0) {
       Serial.print("Unknown encoding");
     }
     else {
-    if (ENABLE_Sniffer) {
-      Serial.print("Received ");
-      Serial.print( RFvalue );
-      Serial.print(" / ");
-      Serial.print( myRFSwitch.getReceivedBitlength() );
-      Serial.print("bit ");
-      Serial.print("Protocol: ");
-      Serial.println( myRFSwitch.getReceivedProtocol() );
-    }
-    
-    switch (RFvalue) {  // Decide which IR signal to send given the IR signal received
+      if (ENABLE_Sniffer) { //Debug
+        Serial.print("Received ");
+        Serial.print( RFvalue );
+        Serial.print(" / ");
+        Serial.print( myRFSwitch.getReceivedBitlength() );
+        Serial.print("bit ");
+        Serial.print("Protocol: ");
+        Serial.println( myRFSwitch.getReceivedProtocol() );
+      }
+
+      switch (RFvalue) {  // Decide which IR signal to send given the IR signal received
       case FRIGIDAIRE_Power:
         My_Sender.send(SONY,0xE0E0E01F,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          
+        }
         break;
       case FRIGIDAIRE_Timer:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_FanUp:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_FanDown:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_Cool:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_TempUp:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_TempDown:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_AutoFan:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_FanOnly:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_ES:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
       case FRIGIDAIRE_Sleep:
         My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
-        Serial.println("Sent FRIGIDAIRE_Power");
+        if (ENABLE_Sniffer) { //Debug
+          Serial.println("Sent FRIGIDAIRE_Power");
+        }
         break;
-      } //switch
+      }
 
-    } //else
+    }
 
-  // Prepare for more input
-  myRFSwitch.resetAvailable();
-  } //if
-  
+    myRFSwitch.resetAvailable(); //Prepare for more input
+  }
+
   delay(del); //Slow the loop  
-} //loop
+}
+
