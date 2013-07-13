@@ -1,6 +1,7 @@
 /*
 This is the first step in creating a Wireless Universal IR extender.
 Currently it is only the FRIGIDAIRE A/C Unit as its data is entered manually.
+An IR LED must be connected to the output PWM pin 3
 */
 #include <IRLib.h>
 #include <RCSwitch.h>
@@ -28,8 +29,9 @@ IRsend My_Sender;  //Instantiate IRsend class
 int del = 500; //Delay value for end of loop
 
 void setup() {
-Serial.begin(9600);
-myRFSwitch.enableReceive(0); //receiver on interrupt 0 => that is pin #2
+  Serial.begin(9600);
+  myRFSwitch.enableReceive(0); //RF receiver on interrupt 0 => that is pin #2
+//  Serial.print("Fin Setup");
 }
 
 
@@ -54,7 +56,7 @@ void loop() {
     
     switch (RFvalue) {  // Decide which IR signal to send given the IR signal received
       case FRIGIDAIRE_Power:
-        My_Sender.send(SONY,0xA8BCA,20); //Code Type, Code Value, Code Bit Length
+        My_Sender.send(SONY,0xE0E0E01F,20); //Code Type, Code Value, Code Bit Length
         Serial.println("Sent FRIGIDAIRE_Power");
         break;
       case FRIGIDAIRE_Timer:
