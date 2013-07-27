@@ -54,10 +54,7 @@ void loop()
   // 3. Check onboard components for incoming data
   onBoardManager.check();
 
-}
-
-ISR(TIMER1_OVF_vect)        // interrupt service routine 
-{ 
+} 
   TCNT1 = 63536;   // preload timer
   cycleCount = cycleCount+1;
   if (cycleCount == leds.m_nDutyCycle)
