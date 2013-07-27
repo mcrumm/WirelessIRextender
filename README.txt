@@ -9,12 +9,9 @@ Parts List:
 (1) 434MHz RF Link Receiver, $4.95 USD, https://www.sparkfun.com/products/10532
 (1) 434MHz RF Link Transmitter, $3.95 USD, https://www.sparkfun.com/products/10534
 
-Proposed Libraries:
-RF - https://code.google.com/p/rc-switch/ this is used by NinjaBlock so I thought it would make sense to utilize the same one for consistency.
+Libraries:
+RF - https://github.com/ninjablocks/arduino/tree/rewrite This is the new rewrite used by NinjaBlock. I thought it would make sense to utilize the same one for consistency.
 IR - https://github.com/cyborg5/IRLib
-Alternative Libraries:
-RF - http://www.airspayce.com/mikem/arduino/VirtualWire/index.html with a visual guide here, http://www.pjrc.com/teensy/td_libs_VirtualWire.html
-IR - http://www.righto.com/2009/08/multi-protocol-infrared-remote-library.html which the above is based on
 
 Capabilities:
 Flowchart - https://plus.google.com/100877474955327466991/posts/XdTzDKRhvCU
