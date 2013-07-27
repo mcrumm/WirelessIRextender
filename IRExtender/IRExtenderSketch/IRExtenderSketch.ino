@@ -1,5 +1,5 @@
 //#include "JsonSerial.h"
-//#include "NinjaPacket.h"
+#include "NinjaPacket.h"
 //#include "PortManager.h"
 //#include "Port.h"
 //#include "NinjaLED.h"
@@ -39,14 +39,14 @@ void loop()
     else
       onBoardManager.handle(&ninjaPacket);
 
-    /*Serial.print("G=");
+    Serial.print("G=");
     Serial.println(ninjaPacket.getGuid());
     Serial.print("D=");
     Serial.println(ninjaPacket.getDevice());
     Serial.print("DA=");
     Serial.println(ninjaPacket.getData());
     Serial.print("Ram=");
-    Serial.println(freeRam());*/
+    Serial.println(freeRam());
   } */
   
   
@@ -55,14 +55,3 @@ void loop()
   onBoardManager.check();
 
 } 
-  TCNT1 = 63536;   // preload timer
-  cycleCount = cycleCount+1;
-  if (cycleCount == leds.m_nDutyCycle)
-		leds.statOff();
-  
-  if (cycleCount == leds.m_nPeriod)
-  {
-		leds.statOn();
-		cycleCount = 0;
-  }
-}
