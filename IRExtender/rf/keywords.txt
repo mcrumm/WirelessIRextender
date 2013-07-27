@@ -1,0 +1,43 @@
+#######################################
+# Syntax Coloring for RF Library, NinjaBlock
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+RFPacket		KEYWORD1
+RFReceiver 	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+####
+#RFPacket
+####
+append			KEYWORD2
+get				KEYWORD2
+getPosition	KEYWORD2
+getSize			KEYWORD2
+hasNext		KEYWORD2
+next				KEYWORD2
+reset				KEYWORD2
+rewind			KEYWORD2
+print				KEYWORD2
+set				KEYWORD2
+
+####
+#RFReceiver
+####
+start				KEYWORD2
+stop				KEYWORD2
+getPacket		KEYWORD2
+purge			KEYWORD2
+onInterrupt		KEYWORD2
+
+####
+#RFTransmitter
+####
+send				KEYWORD2
+setup			KEYWORD2
