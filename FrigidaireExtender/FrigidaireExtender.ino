@@ -129,4 +129,3 @@ void loop() {
 
   delay(del); //Slow the loop  
 }
-
