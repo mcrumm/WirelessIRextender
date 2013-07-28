@@ -1,8 +1,8 @@
 #ifndef DECODER_H
 #define DECODER_H
 
-#include "../rf/RFPacket.h"
-#include "../common/NinjaPacket.h"
+#include "RFPacket.h"
+#include "NinjaPacket.h"
 
 class Decoder
 {

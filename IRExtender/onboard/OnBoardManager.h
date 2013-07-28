@@ -7,13 +7,13 @@
 #include <WProgram.h>
 #endif
 
-#include "../decoder/Decoder.h"
-#include "../encoder/Encoder.h"
-#include "../rf/RFPacket.h"
-#include "../rf/RFReceiver.h"
-#include "../rf/RFTransmitter.h"
+#include "Decoder.h"
+#include "Encoder.h"
+#include "RFPacket.h"
+#include "RFReceiver.h"
+#include "RFTransmitter.h"
 
-#define NUM_DECODERS	1
+#define NUM_DECODERS	5
 
 class OnBoardManager
 {
@@ -23,15 +23,16 @@ private:
 	RFPacket		m_PacketTransmit;
 
 	Decoder*		m_Decoders[NUM_DECODERS];
-	int				m_nLastDecode;
 	Encoder*			m_encoder;
+
+	Decoder* properDecoder(RFPacket* packet);
 
 public:
 	OnBoardManager();
 
 	void	setup();
 	void	check();
-	
+
 	void	handle(NinjaPacket* pPacket);
 };
 

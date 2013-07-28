@@ -1,0 +1,5 @@
+Environment Notes
+
+It is assumed you are using the official Arduino IDE.
+
+-create symbolic links for each folder, such as "common", in your Arduino libraries folder.

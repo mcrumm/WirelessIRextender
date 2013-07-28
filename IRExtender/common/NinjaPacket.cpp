@@ -1,7 +1,7 @@
 #include "NinjaPacket.h"
 
-#include "../common/Ninja.h"
-#include "../serial/JsonSerial.h"
+#include "Ninja.h"
+#include "JsonSerial.h"
 
 char* NinjaPacket::DELIMITERS = strdup("{}[]:,\" \r\n");
 

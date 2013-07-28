@@ -1,7 +1,7 @@
 #ifndef ENCODER_H
 #define ENCODER_H
 
-#include "../rf/RFPacket.h"
+#include "RFPacket.h"
 
 class Encoder
 {
