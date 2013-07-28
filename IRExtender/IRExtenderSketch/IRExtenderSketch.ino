@@ -1,3 +1,4 @@
+#include "JsonSerial.h"
 #include "RFPacket.h"
 #include "IRPacket.h"
 #include "CommonProtocolEncoder.h"
