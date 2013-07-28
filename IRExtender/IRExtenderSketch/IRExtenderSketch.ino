@@ -23,9 +23,9 @@ int freeRam ()
 void setup()
 {
   delay(2000);
-  
-  jsonSerial.setup(9600); //TODO: 57600 baudrate once dynamic baud detection is implemented in the client
+  Serial.begin(9600);
   onBoardManager.setup();
+  Serial.println("Setup Complete");
 }
 
 void loop()
@@ -36,14 +36,14 @@ void loop()
     if(ninjaPacket.getGuid() == 0)
 		onBoardManager.handle(&ninjaPacket);
 		
-    /*Serial.print("G=");
+    Serial.print("G=");
     Serial.println(ninjaPacket.getGuid());
     Serial.print("D=");
     Serial.println(ninjaPacket.getDevice());
-    Serial.print("DA=");
-    Serial.println(ninjaPacket.getData());
+//    Serial.print("DA=");
+//    Serial.println(ninjaPacket.getData());
     Serial.print("Ram=");
-    Serial.println(freeRam());*/
+    Serial.println(freeRam()); 
   }
   
   

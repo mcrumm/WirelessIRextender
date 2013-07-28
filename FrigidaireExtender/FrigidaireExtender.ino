@@ -31,6 +31,7 @@ int del = 500; //Delay value for end of loop
 void setup() {
   Serial.begin(9600);
   myRFSwitch.enableReceive(0); //RF receiver on interrupt 0 => that is pin #2
+  Serial.println("Setup Complete");
 }
 
 
