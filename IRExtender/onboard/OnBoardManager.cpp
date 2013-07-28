@@ -1,9 +1,6 @@
 #include "OnBoardManager.h"
 
 #include "Ninja.h"
-#include "Heartbeat.h"
-
-//#include "NinjaLED.h"
 
 #include "CommonProtocolDecoder.h"
 #include "CommonProtocolEncoder.h"
@@ -18,7 +15,6 @@
 
 #include "OSv2ProtocolDecoder.h"
 
-//extern NinjaLED leds;
 
 OnBoardManager::OnBoardManager()
 {
@@ -48,8 +44,6 @@ void OnBoardManager::check()
 
 		if(decoder != NULL)
 		{
-			// Blink stat LED to show activity
-			//leds.blinkStat();
 
 			NinjaPacket packet;
 
@@ -62,23 +56,6 @@ void OnBoardManager::check()
 		m_Receiver.purge();
 	}
 
-	// Check if heartbeat expired
-/*	if(heartbeat.isExpired())
-	{
-		NinjaPacket packet;
-
-		packet.setType(TYPE_DEVICE);
-		packet.setGuid(0);
-		packet.setDevice(ID_STATUS_LED);
-		packet.setData(leds.getStatColor());
-
-		packet.printToSerial();
-
-		packet.setDevice(ID_NINJA_EYES);
-		packet.setData(leds.getEyesColor());
-
-		packet.printToSerial();
-	} */
 }
 
 Decoder* OnBoardManager::properDecoder(RFPacket* packet)
@@ -105,11 +82,7 @@ void OnBoardManager::handle(NinjaPacket* pPacket)
 	if(pPacket->getGuid() != 0)
 		return;
 
-	/*if(pPacket->getDevice() == ID_STATUS_LED)
-		//leds.setStatColor(pPacket->getData());
-	else if(pPacket->getDevice() == ID_NINJA_EYES)
-		//leds.setEyesColor(pPacket->getData());
-	else if(pPacket->getDevice() == ID_ONBOARD_RF)
+	if(pPacket->getDevice() == ID_ONBOARD_RF)
 	{
 		m_Receiver.stop();
 
@@ -134,7 +107,7 @@ void OnBoardManager::handle(NinjaPacket* pPacket)
 		m_Transmitter.send(&m_PacketTransmit, 5);
 
 		m_Receiver.start();
-	} */
+	}
 	
 	if(pPacket->getDevice() == ID_ONBOARD_RF)
 	{
