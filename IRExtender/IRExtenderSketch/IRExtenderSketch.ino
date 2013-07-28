@@ -2,19 +2,19 @@
 #include "NinjaPacket.h"
 #include "PortManager.h"
 #include "Port.h"
-#include "NinjaLED.h"
+//#include "NinjaLED.h"
 #include "OnBoardManager.h"
-#include "Heartbeat.h"
+//#include "Heartbeat.h"
 #include "RFPacket.h"
 
 #include "CommonProtocolEncoder.h"
 #include "CommonProtocolDecoder.h"
 
-#include <IRLib.h>
+#include "IRLib.h"
 
 OnBoardManager  onBoardManager;
 PortManager     portManager;
-NinjaLED        leds;
+//NinjaLED        leds;
 NinjaPacket     ninjaPacket;
 volatile unsigned int	cycleCount;
 
@@ -31,8 +31,8 @@ void setup()
   delay(2000);
   
   jsonSerial.setup(9600); //TODO: 57600 baudrate once dynamic baud detection is implemented in the client
-  leds.setup();
-  leds.timerSetup();
+//  leds.setup();
+//  leds.timerSetup();
   onBoardManager.setup();
 }
 
