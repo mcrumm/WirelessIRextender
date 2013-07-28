@@ -14,7 +14,7 @@ public:
 	CommonProtocolDecoder();
 
 	boolean decode(RFPacket* pPacket);
-	void	fillPacket(NinjaPacket* pPacket);
+	void	fillPacket(IRPacket* pPacket);
 };
 
 #endif

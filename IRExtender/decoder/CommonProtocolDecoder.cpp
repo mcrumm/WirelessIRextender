@@ -1,6 +1,7 @@
 #include "CommonProtocolDecoder.h"
 
 #include "Ninja.h"
+#include "IRPacket.h"
 
 CommonProtocolDecoder::CommonProtocolDecoder()
 {
@@ -51,12 +52,8 @@ boolean CommonProtocolDecoder::decode(RFPacket* pPacket)
 	return (m_nCode != 0);
 }
 
-void CommonProtocolDecoder::fillPacket(NinjaPacket* pPacket)
+void CommonProtocolDecoder::fillPacket(IRPacket* pPacket)
 {
-	pPacket->setEncoding(ENCODING_COMMON);
 	pPacket->setTiming(m_nPulseLength);
-	pPacket->setType(TYPE_DEVICE);
-	pPacket->setGuid(0);
-	pPacket->setDevice(ID_ONBOARD_RF);
 	pPacket->setData(m_nCode);
 }
