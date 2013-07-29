@@ -2,8 +2,9 @@
 
 RFReceiver*	RFReceiver::pInstance = NULL;
 
-RFReceiver::RFReceiver()
+RFReceiver::RFReceiver(int mInputPin)
 {
+  m_inputPin = mInputPin;
 	m_bCapture = false;
 	m_bDataAvailable = false;
 }
@@ -14,12 +15,12 @@ void RFReceiver::start()
 
 	purge();
 
-	attachInterrupt(0, onInterrupt, CHANGE);
+	attachInterrupt(m_inputPin, onInterrupt, CHANGE);
 }
 
 void RFReceiver::stop()
 {
-	detachInterrupt(0);
+	detachInterrupt(m_inputPin);
 
 	pInstance = NULL;
 }
@@ -38,6 +39,11 @@ RFPacket* RFReceiver::getPacket()
 		return NULL;
 
 	return &m_PacketReceive;
+}
+
+int RFReceiver::getPin()
+{
+  return m_inputPin;
 }
 
 void RFReceiver::onSignalChange()

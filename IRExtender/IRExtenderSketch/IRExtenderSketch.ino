@@ -3,12 +3,16 @@
 #include "IRPacket.h"
 #include "CommonProtocolEncoder.h"
 #include "CommonProtocolDecoder.h"
+#include "RFReceiver.h"
+#include "RFTransmitter.h"
 #include "IRLib.h"
 
 IRPacket                irPacket;
 RFPacket                rfPacket;
-CommonProtocolEncoder   myEncoder(5);
+CommonProtocolEncoder   myEncoder(100);
 CommonProtocolDecoder   myDecoder;
+RFReceiver              rfReceiver(0);
+RFTransmitter           rfTransmitter;
 volatile unsigned int	cycleCount;
 volatile unsigned long  payload;
 
@@ -24,6 +28,8 @@ void setup()
 {
   delay(2000);
   Serial.begin(9600);
+  rfTransmitter.setup(13);
+  rfReceiver.start();
   Serial.println("Setup Complete");
 }
 
@@ -38,16 +44,16 @@ void loop()
   myEncoder.encode(&rfPacket);
 
   //Transmit Packet
+  rfTransmitter.send(&rfPacket, 1);
 
   // ...
 
   // Receive Packet
-
   myDecoder.decode(&rfPacket);
   myDecoder.fillPacket(&irPacket);
 
   Serial.print("IRPacket Payload: ");
   irPacket.printToSerial();
-  
+
   Serial.println("-----------------------------------------------------------------");
 }
